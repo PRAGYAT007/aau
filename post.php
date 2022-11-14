@@ -1,0 +1,13 @@
+<?php
+
+echo "<form id='forms' action='payresponse.php' method='post'>";
+foreach($_REQUEST as $key => $value)
+{
+	echo'<input type="hidden" name="'.$key.'" value="'.$_REQUEST[$key].'">';
+	
+}
+echo "<form>";
+?>
+<script type="text/javascript">
+	document.getElementById("forms").submit();
+	</script>
