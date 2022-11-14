@@ -1,0 +1,33 @@
+<?php
+	session_start();
+	include "connect.php";
+	if(isset($_POST["submit"]))
+	{
+		$username=$_POST["username"];
+		$password=$_POST["password"];
+		$pwd="";
+		$sql="Select * from admin where username='$username'";
+		$result=mysqli_query($con,$sql);
+		$n=mysqli_num_rows($result);
+		if($n==0)
+		{
+			header("location:adminlogin.php?err=1");
+			return;	
+		}
+		else
+		{
+			$row=mysqli_fetch_array($result);
+			$pwd=$row[1];
+			if($password==$pwd)
+			{
+				$_SESSION["amgurilog"]=true;
+				header("location:admin.php");	
+			}
+			else
+			{
+				header("location:adminlogin.php?err=1");
+				return;	
+			}
+		}
+	}
+?>
